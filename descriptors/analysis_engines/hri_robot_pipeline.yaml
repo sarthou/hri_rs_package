@@ -1,0 +1,24 @@
+ae: # -> various meta data
+    name: hri_robot
+fixedflow: # -> the fixedflow a.k.a the perception algorithms, i/o components etc.
+    - CollectionReader
+    - ImagePreprocessor
+    - PointCloudFilter
+    - NormalEstimator
+    - PlaneAnnotator
+    - PointCloudClusterExtractor
+    - ClusterMerger
+    - ClusterTracker
+    - Cluster3DGeometryAnnotator
+    - ClusterColorHistogramCalculator
+    - PrimitiveShapeAnnotator
+    - DrawResultImage
+CollectionReader: # parameter overrides for annotators
+    camera_config_files: ['config_robot.ini']
+ClusterColorHistogramCalculator: # parameter overwriting
+    semantic_label: true
+PointCloudClusterExtractor:
+    plane_distance_threshold: 0.0
+    polygon_max_height: 0.1
+ClusterTracker:
+    max_dist: 0.2
